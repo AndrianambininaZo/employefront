@@ -1,0 +1,78 @@
+<div class="payement">
+
+    <div class="isContenu">
+        <header>
+            <span>Liste de tout le payement</span>
+            <button (click)="openModal()" class="btn btn-sm btn-success"><i class="bi bi-plus"></i> nouveau</button>
+        </header>
+        <main>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom | Prenom</th>
+                        <th>Matricule</th>
+                        <th>Montant</th>
+                        <th>Date(mois-annee)</th>
+                        <th>Motif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listAvance | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems} ; let i=index" >
+                        <td>{{i + 1}}</td>
+                        <td>{{item.Employes?.nom + " " + item.Employes?.prenom}}</td>
+                        <td>{{item.Employes?.matricule}}</td>
+                        <td>{{item.montant + " Ariary"}}</td>
+                        <td>{{item.mois+ "-"+item.annee}}</td>
+                        <td>{{item.motif}}</td>
+
+                    </tr>
+                </tbody>
+            </table> 
+            <div *ngIf="listAvance && listAvance.length > 9" class="pagination">
+                <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+                    previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+            </div>           
+        </main>
+    </div>
+    <div *ngIf="isModal" class="isForm">
+        <form [formGroup]="formAvance" (ngSubmit)="enregistrerAvance()">
+            <div class="form__title">
+                <span>Formulaire avance</span>
+                <p *ngIf="isAvance" class="text-warning">{{isAvance}}</p>
+            </div>            
+            <div class="form-temps">
+                <div class="form-group ">
+                    <label for="Label">Annee</label>
+                    <select name="" id="" class="form-select" formControlName="annee">
+                        <option *ngFor="let item of annees" [value]="item">{{item}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Label">Mois</label>
+                    <select name="" id="" class="form-select" formControlName="mois">
+                        <option *ngFor="let item of mois" [value]="item.id">{{item.mois}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Label">Personnel</label>
+                <select name="" id="" class="form-select" formControlName="EmployesId">
+                    <option *ngFor="let item of listPersonnel" [value]="item.id">{{item.nom + " "+item.prenom + " | "+ item.matricule}}</option>
+                </select>
+            </div> 
+            <div class="form-group">
+                <label for="Montant">Montant</label>
+                <input type="number" name="" id="" class="form-control" placeholder="Montant" formControlName="montant">
+            </div>
+            <div class="form-group">
+                <label for="Label">Motif</label>
+                <input type="text" name="" id="" class="form-control" placeholder="Motif" formControlName="motif">
+            </div>
+            <div class="isButton">
+                <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+                <a (click)="annullerAvance()" class="btn btn-sm btn-danger">Annuller</a>
+            </div>
+        </form>
+    </div>
+</div>

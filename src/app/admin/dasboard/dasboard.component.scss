@@ -1,0 +1,26 @@
+.dasboard{
+    header{
+        padding: 1rem;
+        width: 100%;
+        display: flex;
+        gap: 1.5rem;  
+        .div__item{
+            flex:1;
+            box-shadow: 3px 3px 3px 3px gray;
+            height: 35vh;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            cursor: pointer;
+            i{
+                font-size: 40px;
+                color: wheat;
+            }
+            &:hover{
+                background-color: gray;
+            }
+        }      
+    }
+
+}

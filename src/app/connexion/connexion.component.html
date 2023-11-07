@@ -1,0 +1,21 @@
+<div class="connexion__container">
+    <main>
+        <div class="connexion__header">
+            <span>F C E</span>
+        </div>
+        <form [formGroup]="formConnexion" (ngSubmit)="connexion()">
+            <div class="form-group">
+                <label for="Label">Email:</label>
+                <input type="email" class="form-control" placeholder="Votre email" formControlName="email">
+            </div>
+            <div class="form-group">
+                <label for="Label">Password:</label>
+                <input type="password" class="form-control" placeholder="Votre passe word" formControlName="password">
+            </div>
+            <div class="button">
+                <button [disabled]="formConnexion.invalid" type="submit" class="btn btn-primary">Enregister</button>
+            </div>
+        </form>
+    </main>
+</div>
+

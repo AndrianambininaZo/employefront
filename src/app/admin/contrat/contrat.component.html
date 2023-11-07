@@ -1,0 +1,74 @@
+<div class="contrat">
+    <div class="list__table">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Nom | Prenom</th>
+                    <th>Poste</th>
+                    <th>Debut</th>
+                    <th>Fin</th>
+                    <th>Montant</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listContrat | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems};">
+                    <td>{{item.id}}</td>
+                    <td>{{item.Employes!.nom +" "+item.Employes?.prenom }}</td>
+                    <td>{{item.Postes?.nom}}</td>
+                    <td>{{item.debut | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.fin | date:'dd-MM-yyyy'}}</td>
+                    <td>{{item.montant + "Ar"}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="listContrat && listContrat.length > 9" class="pagination">
+            <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+                previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+    <div class="formlaire">
+        <div class="card">
+            <div class="card-header">
+                <span>Creer un contrat</span>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formContrat" (ngSubmit)="enregistrerContrat()">
+                    <div>
+                        <label for="Label">Personnel(IM | Nom)</label>
+                        <select name="" id="" class="form-select" formControlName="personnelId">
+                            <option *ngFor="let item of listPersonnel" [value]="item.id">{{item.matricule + " | " +item.nom }}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formContrat.controls['personnelId'].errors && formContrat.controls['personnelId'].touched">Presonnel obligatoire</small>
+                    </div>
+                    <div>
+                        <label for="Label">Poste (Nom | numero)</label>
+                        <select name="" id="" class="form-select" formControlName="posteId">
+                            <option *ngFor="let item of listPoste" [value]="item.id">{{item.nom + ' ('+ item.id +')'}}</option>
+                        </select>
+                        <small class="text-danger" *ngIf="formContrat.controls['posteId'].errors && formContrat.controls['posteId'].touched">Poste obligatoire</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="Label">Montant</label>
+                        <input type="number"  formControlName="montant" class="form-control" placeholder="Debut">
+                        <small class="text-danger" *ngIf="formContrat.controls['montant'].errors && formContrat.controls['montant'].touched">Montant obligatoire</small>
+                    </div> 
+                    <div class="form-group">
+                        <label for="Label">Debut</label>
+                        <input type="date"  formControlName="debut" class="form-control" placeholder="Debut">
+                        <small class="text-danger" *ngIf="formContrat.controls['debut'].errors && formContrat.controls['debut'].touched">Poste obligatoire</small>
+                    </div> 
+                    <div class="form-group">
+                        <label for="Label">Fin</label>
+                        <input type="date"  formControlName="fin" class="form-control" placeholder="Fin">
+                        <small class="text-danger" *ngIf="formContrat.controls['fin'].errors && formContrat.controls['fin'].touched">Poste obligatoire</small>
+                    </div>
+                    <div class="isButton">
+                        <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                        <a (click)="annuller()" class="btn btn-danger btn-sm">Annuller</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>

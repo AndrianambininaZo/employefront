@@ -1,0 +1,68 @@
+<div class="payement">
+    <div [ngClass]="{'isForm':isFom,'isDisForm':!isFom}">
+        <form [formGroup]="formPersonnel" (ngSubmit)="enregistrerPesonnel()">
+            <div class="form__title">
+                <span>Creer nouveau personnel</span>
+            </div>
+            <div class="validation">
+                <small class="text-danger" *ngIf="formPersonnel.controls['email'].errors && formPersonnel.controls['email'].touched">Email invalid</small>
+                <small class="text-danger" *ngIf="formPersonnel.controls['nom'].errors && formPersonnel.controls['nom'].touched">Nom obligatoire</small>
+                <small class="text-danger" *ngIf="formPersonnel.controls['cin'].errors && formPersonnel.controls['cin'].touched">Cin non valider</small>
+                <small class="text-danger" *ngIf="formPersonnel.controls['matricule'].errors && formPersonnel.controls['matricule'].touched">Matricule obligatoir</small>
+                <small class="text-danger" *ngIf="formPersonnel.controls['dateNaissance'].errors && formPersonnel.controls['dateNaissance'].touched">Date naissance obligatoir</small>
+            </div>
+            <div class="isInput">
+                <div class="form-group">
+                    <input type="text" placeholder="Nom" class="form-control" formControlName="nom">
+                    <input type="text" placeholder="Prenom" class="form-control" formControlName="prenom"> 
+                    <input type="text" placeholder="IMatricule" class="form-control" formControlName="matricule">           
+                </div>
+                <div class="form-group">
+                    <input type="date" placeholder="DateNaissance" class="form-control" formControlName="dateNaissance">
+                    <input type="text" placeholder="Cin obligatoire 12 chiffre" class="form-control" formControlName="cin">
+                    <input type="text" placeholder="Email" class="form-control" formControlName="email">
+                </div>
+            </div>
+            <div class="button">
+                <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                <a (click)="annullerForm()" class="btn btn-danger btn-sm">Annuller</a>
+            </div>
+        </form>
+    </div>
+    
+    <header>
+        <span>Liste de tout le personnel</span>
+        <button (click)="isNouveau()" class="btn btn-success btn-sm"><i class="bi bi-person-plus-fill"></i> nouveau</button>
+    </header> 
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>IMatricule</th>
+                <th>Nom | Prenom</th>
+                <th>Cin</th>
+                <th>Email</th>
+                <th>DateNaissance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listPersonnel | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems}; let i=index">
+                <td>{{i + 1}}</td>
+                <td>{{item.matricule}}</td>
+                <td>{{item.nom +" "+ item.prenom}}</td>
+                <td>{{item.cin}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.dateNaissance | date: 'dd-MM-yyyy'}}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm">Modifier</button>
+                    <button class="btn btn-danger btn-sm">Annuller</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>  
+    <div *ngIf="listPersonnel && listPersonnel.length > 9" class="pagination">
+        <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+            previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+    </div> 
+</div>

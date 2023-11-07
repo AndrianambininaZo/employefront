@@ -1,0 +1,58 @@
+.payement{
+    position: relative;
+    .isContenu{
+        header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        main{
+            padding: 0 1rem 0 1rem;
+        }
+    }
+
+
+    //form
+    .isForm{
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        justify-content: center;
+        form{
+            padding: 1rem;
+            width: 55%;
+            background-color: white;
+            height: max-content;
+            border-radius: 10px;
+            .form__title{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                border-bottom: solid 1px gray;
+                flex-direction: column;
+                span{
+                    font-size: calc(20px + 0.3vw);
+                }
+            }
+            .form-temps{
+                margin-top: 1rem;
+                display: flex;
+                gap: 1rem;
+            }
+            .isButton{
+                margin-top: 1rem;
+                display: flex;
+                gap: 1rem;
+                button , a{
+                    flex: 1;
+                }
+                
+            }
+        }
+    }
+}

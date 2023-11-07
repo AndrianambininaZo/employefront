@@ -1,0 +1,29 @@
+.conge{
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    .isTable{
+        flex: 1;
+    }
+    .isForm{
+        flex: .6;
+        
+        form{
+            .form-group{
+                margin-bottom: 1rem;
+            }
+            .isButton{
+                display: flex;
+                gap: 1rem;
+                button{
+                    flex: 1;
+                    font-weight: 800;
+                }
+                a{
+                    flex: 1;
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+}

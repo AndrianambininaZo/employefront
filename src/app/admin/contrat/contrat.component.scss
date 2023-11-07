@@ -1,0 +1,26 @@
+.contrat{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    .list__table{
+        flex: 1;
+    }
+    .formlaire{
+        flex: .5;
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .isButton{
+                display: flex;
+                gap: 1rem;
+                button{
+                    flex: 1;
+                }
+                a{
+                    flex: 1;
+                }
+            }
+        }
+    }
+}

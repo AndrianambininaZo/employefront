@@ -1,0 +1,38 @@
+<div class="app">
+    <div class="nav__bar">
+        <header>
+            <span>F C E</span>
+        </header>
+        <nav>  
+            <a routerLink="/admin/dasboard" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-house"></i><span >Dasboard</span >
+            </a>  
+            <a routerLink="/admin/personnel" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-person"></i><span >Personnel</span >
+            </a> 
+            <a routerLink="/admin/contrant" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-files-alt"></i><span >Contrat</span >
+            </a> 
+            <a routerLink="/admin/poste" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-file-post"></i><span >Poste</span >
+            </a> 
+            <a routerLink="/admin/payement" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-coin"></i><span >Payement</span >
+            </a> 
+            <a routerLink="/admin/avance" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-currency-exchange"></i><span >Avance</span >
+            </a>
+            <a routerLink="/admin/conge" class="nav__link" routerLinkActive="active">
+                <i class="bi bi-car-front"></i><span >Conge</span >
+            </a>  
+        </nav>
+    </div>   
+    <main>
+        <div class="sidebar">
+            <button (click)="deconnexion()" class="btn" title="Deconnexion"><i class="bi bi-box-arrow-in-right"></i></button>           
+        </div>
+        <div class="isMain">
+            <router-outlet></router-outlet>
+        </div>        
+    </main>
+</div>

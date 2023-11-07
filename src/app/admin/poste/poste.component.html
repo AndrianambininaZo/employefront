@@ -1,0 +1,50 @@
+<div class="poste">
+    <div class="list__table">
+        <span>Liste de tout le poste</span>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom poste</th>
+                    <th>Desrciption</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listPoste | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems};; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.nom}}</td>
+                    <td>{{item.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="listPoste && listPoste.length > 9" class="pagination">
+            <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+                previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+        </div> 
+    </div>
+    <div class="formlaire">
+        <div class="card">
+            <div class="card-header">
+                <span>Creer un poste</span>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formPoste" (ngSubmit)="enregistrerPoste()">                    
+                    <div class="form-group">
+                        <label for="Label">Nom poste</label>
+                        <input type="text" formControlName="nom" class="form-control" placeholder="Nom poste">
+                        <small class="text-danger" *ngIf="formPoste.controls['nom'].errors && formPoste.controls['nom'].touched">Champ obligatoire</small>
+                    </div> <div class="form-group">
+                        <label for="Label">Description</label>
+                        <input type="text" formControlName="description" class="form-control" placeholder="Description poste">
+                        <small class="text-danger" *ngIf="formPoste.controls['description'].errors && formPoste.controls['description'].touched">Champ obligatoire</small>
+                    </div>
+                    <div class="isButton">
+                        <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+                        <a (click)="annuller()" class="btn btn-danger btn-sm">Enregistrer</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>

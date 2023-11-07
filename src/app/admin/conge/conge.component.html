@@ -1,0 +1,61 @@
+<div class="conge">
+    <div class="isTable">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Personnel</th>
+                    <th>Motif</th>
+                    <th>Date debut</th>
+                    <th>Date fin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of congeList | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems} ; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.Employes?.nom + " "+ item.Employes?.nom}}</td>
+                    <td>{{item.motif}}</td>
+                    <td>{{item.dateDebut | date:"dd-MM-yyyy"}}</td>
+                    <td>{{item.dateFin | date:"dd-MM-yyyy"}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="congeList && congeList.length > 9" class="pagination">
+            <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+                previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+        </div>
+    </div>
+    <div class="isForm">
+        <div class="card">
+            <div class="card-header">
+                <span>Formulaire de conge</span>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formConge" (ngSubmit)="enregistrerConge()">
+                    <div class="form-group">
+                        <label for="Label">Personnel</label>
+                        <select name="" id="" class="form-select" formControlName="EmployesId">
+                            <option *ngFor="let item of listPersonnel" [value]="item.id">{{item.nom + " "+item.prenom + " | "+ item.matricule}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Label">Date debut</label>
+                        <input type="date" class="form-control" formControlName="dateDebut" placeholder="Date debut">
+                    </div>
+                    <div class="form-group">
+                        <label for="Label">Date fin</label>
+                        <input type="date" class="form-control" formControlName="dateFin" placeholder="Date fin">
+                    </div>
+                    <div class="form-group">
+                        <label for="Label">Motif</label>
+                        <input type="text" class="form-control" formControlName="motif" placeholder="Motif de demande">
+                    </div>
+                    <div class="isButton">
+                        <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button>
+                        <a class="btn btn-sm btn-danger" (click)="annuller()">Annuller</a>
+                    </div>
+                </form>
+            </div>
+        </div>       
+    </div>
+</div>
