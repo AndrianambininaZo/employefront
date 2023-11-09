@@ -56,7 +56,7 @@ export class PayementEmploye{
 export class AvanceEmploye{
     mois?:string;
     annee?: string;
-    montant?:string;
+    montant?:number;
     Employes?:Personnel;
     motif?:string;
 }

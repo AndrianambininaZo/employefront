@@ -26,9 +26,10 @@ export class ContratComponent implements OnInit {
       posteId:this.fb.control("",[Validators.required]),
       personnelId:this.fb.control("",[Validators.required]),     
     });
+    this.getListeContrat()
     this.getListPersonnel();
     this.getListePoste();
-    this.getListeContrat()
+    ;
   }
 
   getListeContrat(){

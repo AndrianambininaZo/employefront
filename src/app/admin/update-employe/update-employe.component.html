@@ -1,0 +1,50 @@
+<div class="update">
+    <form [formGroup]="formPersonnel" (ngSubmit)="modifier()">
+        <div class="form__title">
+            <span>Modification un employeur</span>
+        </div>
+        <div class="validation">
+            <small class="text-danger" *ngIf="formPersonnel.controls['email'].errors && formPersonnel.controls['email'].touched">Email invalid</small>
+            <small class="text-danger" *ngIf="formPersonnel.controls['nom'].errors && formPersonnel.controls['nom'].touched">Nom obligatoire</small>
+            <small class="text-danger" *ngIf="formPersonnel.controls['cin'].errors && formPersonnel.controls['cin'].touched">Cin non valider</small>
+            <small class="text-danger" *ngIf="formPersonnel.controls['matricule'].errors && formPersonnel.controls['matricule'].touched">Matricule obligatoir</small>
+            <small class="text-danger" *ngIf="formPersonnel.controls['dateNaissance'].errors && formPersonnel.controls['dateNaissance'].touched">Date naissance obligatoir</small>
+        </div>
+        <div class="isInput">
+            <div class="form-group">
+                <div>
+                    <label for="Label">Nom:</label>
+                    <input type="text" placeholder="Nom" class="form-control" formControlName="nom">
+                </div>
+                <div>
+                    <label for="Label">Prenom:</label>
+                     <input type="text" placeholder="Prenom" class="form-control" formControlName="prenom"> 
+                </div>
+                <div>
+                    <label for="">Matricule:</label>
+                    <input type="text" placeholder="IMatricule" class="form-control" formControlName="matricule">
+                </div>               
+                           
+            </div>
+            <div class="form-group">
+                <div>
+                    <label for="Label">Date naissance:</label>
+                    <input type="date" placeholder="DateNaissance" class="form-control" formControlName="dateNaissance">                
+                </div>
+                <div>
+                    <label for="Label">Cin:</label>
+                   <input type="text" placeholder="Cin obligatoire 12 chiffre" class="form-control" formControlName="cin">                
+                </div>
+                <div>
+                    <label for="Label">Email:</label>
+                    <input type="text" placeholder="Email" class="form-control" formControlName="email">
+                </div>
+                 
+            </div>
+        </div>
+        <div class="button">
+            <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
+            <a (click)="annullerForm()" class="btn btn-danger btn-sm">Annuller</a>
+        </div>
+    </form>
+</div>

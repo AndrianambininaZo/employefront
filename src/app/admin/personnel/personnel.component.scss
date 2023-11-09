@@ -7,6 +7,19 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 1rem;
+        .header__rigth{
+            display: flex;
+            gap: 1rem;
+            button{
+                width: 120px;
+                height: 40px;
+                font-weight: 800;
+            }
+            input{
+                height: 40px;
+                width: 250px;
+            }
+        }
     }
     .isDisForm{
         form{
@@ -67,5 +80,9 @@
             }
             
         }
+    }
+    .isButton{
+        display: flex;
+        gap: 1rem;
     }
 }

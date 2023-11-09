@@ -33,6 +33,38 @@ export class AdminService {
   }
 
 
+  public getEmploye(id:number):Observable<Personnel>{
+    return this.http.get<Personnel>(environment.backEndHost+"/getOneEpmloye/"+id)
+      .pipe(
+        catchError((error:HttpErrorResponse)=>{
+          return throwError(error);
+        })
+      );
+  }
+
+  public updatePersonnel(data: Personnel,id:number): Observable<Personnel> {
+
+    return this.http.put<Personnel>(environment.backEndHost+"/updateEmployer/"+id, data)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Erreur lors de la création du modification:', error);
+          return throwError(error); // Renvoie l'erreur pour un traitement ultérieur
+        })
+      );
+  }
+
+  public deletPersonnel(id:number): Observable<{}> {
+
+    return this.http.delete<{}>(environment.backEndHost+"/deleteEmployer/"+id)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Erreur lors de la création du suppression:', error);
+          return throwError(error); // Renvoie l'erreur pour un traitement ultérieur
+        })
+      );
+  }
+
+
 
   //poste
   public creerPoste(data:Poste):Observable<Poste> {

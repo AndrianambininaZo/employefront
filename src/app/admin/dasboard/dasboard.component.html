@@ -1,20 +1,53 @@
 <div class="dasboard">
     <header>
-        <div class="div__item">
-            <i class="bi bi-file-person-fill"></i>
-            <p>15 Personnel</p>
+        <div class="div__item" routerLink="/admin/personnel">
+            <span>Personnel</span>
+            <div class="sum">
+                <i class="bi bi-file-person-fill"></i>
+                <p>{{personnel}}</p>
+            </div>            
         </div>
-        <div class="div__item">
-            <i class="bi bi-coin"></i>
-            <p>20 Payement</p>
+        <div class="div__item" routerLink="/admin/payement">
+            <span>Payement</span>
+            <div class="sum">
+                <i class="bi bi-coin"></i>
+                <p>{{sumPayement}} Ar</p>
+            </div>
         </div>
-        <div class="div__item">
-            <i class="bi bi-currency-exchange"></i>
-            <p>8 Avance</p>
+        <div class="div__item" routerLink="/admin/avance">
+            <span>Avance</span>
+            <div class="sum">
+                <i class="bi bi-currency-exchange"></i>
+                <p>{{sumAvance}} Ar</p>
+            </div>
         </div>
-        <div class="div__item">
-            <i class="bi bi-files-alt"></i>
-            <p>10 Contrat</p>
+        <div class="div__item" routerLink="/admin/contrant">
+            <span>Contrat</span>
+            <div class="sum">
+                <i class="bi bi-files-alt"></i>
+                <p>{{conge}}</p>
+            </div>
         </div>
     </header>
+    <main>
+        <span>Liste trois dernier personnel</span>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom et prenom</th>
+                    <th>IMatricule</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of listPersonnel; let i=index">
+                    <td>{{i + 1}}</td>
+                    <td>{{item.nom + " "+item.prenom}}</td>
+                    <td>{{item.matricule}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
 </div>

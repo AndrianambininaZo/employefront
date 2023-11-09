@@ -31,8 +31,13 @@
     </div>
     
     <header>
-        <span>Liste de tout le personnel</span>
-        <button (click)="isNouveau()" class="btn btn-success btn-sm"><i class="bi bi-person-plus-fill"></i> nouveau</button>
+        <p>
+            <span>Liste de tout le personnel</span>
+        </p>
+        <div class="header__rigth">
+            <input (keyup)="recherche($event)" onkeyup="" type="text" class="form-control" placeholder="Recherche">
+            <button (click)="isNouveau()" class="btn btn-success btn-sm"><i class="bi bi-person-plus-fill"></i> nouveau</button>
+        </div>        
     </header> 
     <table class="table table-bordered">
         <thead>
@@ -47,21 +52,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of listPersonnel | paginate:{itemsPerPage:9,currentPage:page,totalItems:totalPageItems}; let i=index">
+            <tr *ngFor="let item of listPersonnel | paginate:{itemsPerPage:7,currentPage:page,totalItems:totalPageItems}; let i=index">
                 <td>{{i + 1}}</td>
                 <td>{{item.matricule}}</td>
                 <td>{{item.nom +" "+ item.prenom}}</td>
                 <td>{{item.cin}}</td>
                 <td>{{item.email}}</td>
                 <td>{{item.dateNaissance | date: 'dd-MM-yyyy'}}</td>
-                <td>
-                    <button class="btn btn-primary btn-sm">Modifier</button>
-                    <button class="btn btn-danger btn-sm">Annuller</button>
+                <td class="isButton">
+                    <button (click)="modifier(item.id!)" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
+                    <button (click)="supprimer(item.id!)" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>
         </tbody>
     </table>  
-    <div *ngIf="listPersonnel && listPersonnel.length > 9" class="pagination">
+    <div *ngIf="listPersonnel && listPersonnel.length > 7" class="pagination">
         <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
             previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
     </div> 

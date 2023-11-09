@@ -20,6 +20,7 @@ import { ContratComponent } from './admin/contrat/contrat.component';
 import { AvanceComponent } from './admin/avance/avance.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { CongeComponent } from './admin/conge/conge.component';
+import { UpdateEmployeComponent } from './admin/update-employe/update-employe.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { CongeComponent } from './admin/conge/conge.component';
     AvanceComponent,
     ConnexionComponent,
     CongeComponent,
+    UpdateEmployeComponent,
   ],
   imports: [
     BrowserModule,
