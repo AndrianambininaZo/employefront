@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Avance, AvanceEmploye, Conge, CongeEmploye, Contrat, ContratRequest, Payement, PayementEmploye, Personnel, Poste } from '../model/admin.model';
+import { Absence, Avance, AvanceEmploye, Conge, CongeEmploye, Contrat, ContratRequest, Payement, PayementEmploye, Personnel, Poste, absenceRequest } from '../model/admin.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -179,6 +179,26 @@ export class AdminService {
   }
   public getListeConge():Observable<Array<CongeEmploye>> {
     return this.http.get<Array<CongeEmploye>>(environment.backEndHost+"/getAllConge")
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          console.error('Erreur lors de get liste conge:', error);
+          return throwError(error); // Renvoie l'erreur pour un traitement ultérieur
+        })
+      );
+  }
+
+//absence
+  public createAbsence(absence:absenceRequest):Observable<Absence>{
+      return this.http.post(environment.backEndHost +"/createAbsencePersonnel",absence).pipe(
+        catchError((error:HttpErrorResponse)=>{
+          console.error('Erreur lors de creation absence', error);        
+          return throwError(error);
+        })
+      )
+  }
+
+  public getListeAbsence():Observable<Array<Absence>> {
+    return this.http.get<Array<Absence>>(environment.backEndHost+"/getAllAbsence")
       .pipe(
         catchError((error: HttpErrorResponse) => {
           console.error('Erreur lors de get liste conge:', error);

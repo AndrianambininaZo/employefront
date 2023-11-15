@@ -12,6 +12,7 @@ import { AppAdminComponent } from './admin/app-admin/app-admin.component';
 import { CongeComponent } from './admin/conge/conge.component';
 import { MonGuard } from './guard/mon.guard';
 import { UpdateEmployeComponent } from './admin/update-employe/update-employe.component';
+import { AbsenceComponent } from './admin/absence/absence.component';
 
 const routes: Routes = [
   { path: 'test', component: TestComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
     { path: 'contrant', component: ContratComponent },
     { path: 'personnel', component: PersonnelComponent },
     { path: 'conge', component: CongeComponent },
-    { path: 'update/:id', component: UpdateEmployeComponent }
+    { path: 'update/:id', component: UpdateEmployeComponent },
+    {path:'absence',component:AbsenceComponent}
   ] }
 ];
 

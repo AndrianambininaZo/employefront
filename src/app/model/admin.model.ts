@@ -75,3 +75,14 @@ export class CongeEmploye{
     motif?:string
     Employes?:Personnel
 }
+
+export class absenceRequest{
+    date?:Date;
+    EmployesId?:number;
+}
+
+export class Absence{
+    id?:number;
+    date?:Date;
+    Employes?:Personnel
+}

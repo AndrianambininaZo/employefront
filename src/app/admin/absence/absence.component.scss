@@ -1,0 +1,42 @@
+.absence{
+    padding: 1rem;
+    width: 100%;
+    header{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+    main{
+        display: flex;
+        gap: 1rem;
+        .isTable{
+            flex: 1;
+        }
+        form{
+            flex: .7;
+            padding: 1rem;
+            box-shadow: 3px 3px 3px 3px gray;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-radius: 5px;
+            height: max-content;
+            .form__title{
+                border-bottom: solid 1px gray;
+            }
+            .isButton{
+                display: flex;
+                gap: 1rem;
+                
+                button{
+                    flex: 1;
+                    font-weight: 800;
+                }
+                a{
+                    flex: 1;
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+}

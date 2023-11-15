@@ -1,0 +1,52 @@
+<div class="absence">
+    <header>
+        <div>
+            <span>Liste absence</span>
+        </div>
+        <button class="btn btn-success btn-sm">nouaveau</button>
+    </header>
+    <main>
+        <div class="isTable">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom et Prenom</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listAbsence | paginate:{itemsPerPage:7,currentPage:page,totalItems:totalPageItems}; let i=index">
+                        <td>{{i + 1}}</td>
+                        <td>{{item.Employes?.nom! + " "+ item.Employes?.prenom! }}</td>
+                        <td>{{item.date}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div *ngIf="listAbsence && listAbsence.length > 7" class="pagination">
+                <pagination-controls (pageChange)="page=$event" [autoHide]="true" [responsive]="true"
+                    previousLabel="Precendent" nextLabel="Suivant"></pagination-controls>
+            </div>
+        </div>
+        <form [formGroup]="formAbsence" (ngSubmit)="handleAbence()">
+            <div class="form__title">
+                <span>Formulaire absence</span>
+            </div>
+            <div class="form-group">
+                <label for="Label">Personnel</label>
+                <select name="" id="" class="form-select" formControlName="posteId" formControlName="EmployesId">
+                    <option *ngFor="let item of listPersonnel" [value]="item.id">{{item.nom + ' ('+ item.id +')'}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Label">Date</label>
+                <input type="date" class="form-control" formControlName="date">
+            </div>
+            <div class="isButton">
+                <button type="submit" class="btn btn-sm btn-primary">Enregistrer</button> 
+                <a class="btn btn-sm btn-danger">Annuller</a>              
+            </div>
+        </form>
+    </main>
+</div>
+
